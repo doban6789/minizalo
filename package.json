@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "license": "MIT",
-  "author": "",
+  "author": "MiniZalo contributors",
   "main": "./out/main/index.js",
   "workspaces": [
     "core",

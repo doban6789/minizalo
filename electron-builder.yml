@@ -41,6 +41,8 @@ mac:
   # Unsigned MVP build. Users open via right-click → Open (see deployment-guide).
 
 linux:
+  # deb requires a maintainer; use a GitHub noreply address (no personal email).
+  maintainer: MiniZalo contributors <vuongnguyenbinh@users.noreply.github.com>
   target:
     - AppImage
     - deb
