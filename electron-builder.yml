@@ -49,5 +49,5 @@ linux:
   category: Network
   # icon: build/icon.png
 
-# No auto-publish from local `dist`. CI passes `--publish` explicitly on tags.
-publish: null
+# Publish target (GitHub) is auto-detected from the git remote. Local `npm run
+# dist` does not publish; only CI's `electron-builder --publish always` uploads.
