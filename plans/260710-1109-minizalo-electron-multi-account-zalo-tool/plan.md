@@ -16,7 +16,7 @@ source: skill
 
 ## Overview
 
-Electron desktop app (open-source, self-run, không host) quản lý tối đa 6 tài khoản Zalo cá nhân qua `zca-js`. Kiến trúc **PA B**: core Node/TS headless (Fastify REST+WS + better-sqlite3 + ≤6 zca-js adapter + webhook dispatcher) chạy qua Electron `utilityProcess`; UI React và CLI đều là **client REST mỏng** trên cùng core. Local-first: bind localhost + API key tĩnh.
+Electron desktop app (open-source, self-run, không host) quản lý tối đa 6 tài khoản Zalo cá nhân qua `zca-js`. Kiến trúc **PA B**: core Node/TS headless (Fastify REST+WS + better-sqlite3 + ≤6 zca-js adapter + webhook dispatcher) chạy **trong Electron main process** (main có `safeStorage` — Red Team #1); UI React và CLI đều là **client REST mỏng** trên cùng core. Local-first: bind localhost + API key tĩnh.
 
 **Nguồn:** Brainstorm report đã duyệt — `plans/reports/brainstorm-260710-1109-minizalo-multi-account-zalo-tool-report.md`. Lib nền: [zca-js](https://github.com/RFS-ADRENO/zca-js) ([docs](https://tdung.gitbook.io/zca-js)).
 
