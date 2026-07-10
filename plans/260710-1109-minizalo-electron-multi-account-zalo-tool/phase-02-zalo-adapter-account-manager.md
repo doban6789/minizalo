@@ -1,10 +1,11 @@
 ---
 phase: 2
-title: "Zalo adapter & account manager"
-status: pending
-effort: ""
+title: Zalo adapter & account manager
+status: completed
+effort: ''
 priority: P1
-dependencies: [1]
+dependencies:
+  - 1
 ---
 
 # Phase 2: Zalo adapter & account manager

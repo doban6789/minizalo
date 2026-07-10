@@ -1,10 +1,11 @@
 ---
 phase: 3
-title: "Messaging webhook & realtime"
-status: pending
-effort: ""
+title: Messaging webhook & realtime
+status: completed
+effort: ''
 priority: P1
-dependencies: [2]
+dependencies:
+  - 2
 ---
 
 # Phase 3: Messaging webhook & realtime
