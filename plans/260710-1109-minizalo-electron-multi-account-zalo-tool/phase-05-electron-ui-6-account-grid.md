@@ -1,10 +1,13 @@
 ---
 phase: 5
-title: "Electron UI (6-account grid)"
-status: pending
-effort: ""
+title: Electron UI (6-account grid)
+status: completed
+effort: ''
 priority: P2
-dependencies: [2, 3, 4]
+dependencies:
+  - 2
+  - 3
+  - 4
 ---
 
 # Phase 5: Electron UI (6-account grid)

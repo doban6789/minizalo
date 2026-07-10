@@ -1,7 +1,7 @@
 ---
 title: MiniZalo — Electron multi-account Zalo tool (MVP)
 description: ''
-status: pending
+status: completed
 priority: P2
 branch: ''
 tags: []
@@ -44,12 +44,12 @@ Electron desktop app (open-source, self-run, không host) quản lý tối đa 6
 | Phase | Name | Status |
 |-------|------|--------|
 | 1 | [Scaffold & core skeleton](./phase-01-scaffold-core-skeleton.md) | Completed |
-| 2 | [Zalo adapter & account manager](./phase-02-zalo-adapter-account-manager.md) | Pending |
-| 3 | [Messaging webhook & realtime](./phase-03-messaging-webhook-realtime.md) | Pending |
+| 2 | [Zalo adapter & account manager](./phase-02-zalo-adapter-account-manager.md) | Completed |
+| 3 | [Messaging webhook & realtime](./phase-03-messaging-webhook-realtime.md) | Completed |
 | 4 | [Scenarios table & AI API](./phase-04-scenarios-table-ai-api.md) | Completed |
-| 5 | [Electron UI (6-account grid)](./phase-05-electron-ui-6-account-grid.md) | Pending |
+| 5 | [Electron UI (6-account grid)](./phase-05-electron-ui-6-account-grid.md) | Completed |
 | 6 | [CLI client](./phase-06-cli-client.md) | Completed |
-| 7 | [Packaging & CI](./phase-07-packaging-ci.md) | Pending |
+| 7 | [Packaging & CI](./phase-07-packaging-ci.md) | Completed |
 
 ## Phase Dependencies
 
@@ -101,12 +101,12 @@ Không có plan nào khác trong `./plans/` — greenfield. Không cross-plan bl
 | # | Finding | Severity | Disposition | Applied |
 |---|---------|----------|-------------|---------|
 | 1 | safeStorage không chạy trong utilityProcess → mã hoá ở main + MessagePort | Critical | Accept | Completed |
-| 2 | Hợp đồng loginQR sai (qrPath file/callback, resolve sau quét) | Critical | Accept | P2 |
-| 3 | Fallback creds plaintext → hard-fail + scheme marker + isolate decrypt | Critical | Accept | P1, P2 |
+| 2 | Hợp đồng loginQR sai (qrPath file/callback, resolve sau quét) | Critical | Accept | Completed |
+| 3 | Fallback creds plaintext → hard-fail + scheme marker + isolate decrypt | Critical | Accept | Completed |
 | 4 | Stored-XSS → apiKey; Electron hardening + render text-only | Critical | Accept | Completed |
-| 5 | Core không supervisor → main respawn + backoff + banner | Critical | Accept | P1, P5 |
+| 5 | Core không supervisor → main respawn + backoff + banner | Critical | Accept | Completed |
 | 6 | Cổng ephemeral stale → nonce/liveness + atomic 0600 + CLI verify | Critical | Accept | Completed |
-| 7 | Disk-full cascade → watchdog + ảnh ra filesystem + WAL/batched | Critical | Accept | P3 |
+| 7 | Disk-full cascade → watchdog + ảnh ra filesystem + WAL/batched | Critical | Accept | Completed |
 | 8 | imageMetadataGetter là option lúc new Zalo; base64 cần temp file; group riêng | High | Accept | P2, P3 |
 | 9 | Session restore cần imei/UA khớp → spike zca-js | High | Accept | P2 |
 | 10 | Migration không atomic → transaction/migration + IF NOT EXISTS + backup | High | Accept | P1 |

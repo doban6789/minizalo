@@ -1,10 +1,12 @@
 ---
 phase: 7
-title: "Packaging & CI"
-status: pending
-effort: ""
+title: Packaging & CI
+status: completed
+effort: ''
 priority: P2
-dependencies: [5, 6]
+dependencies:
+  - 5
+  - 6
 ---
 
 # Phase 7: Packaging & CI

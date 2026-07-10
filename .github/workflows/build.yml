@@ -1,0 +1,76 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+# Least-privilege by default; the release job elevates for itself.
+permissions:
+  contents: read
+
+jobs:
+  # Cheap gate on every push/PR: types, tests, and a runtime-dependency audit.
+  # zca-js holds raw Zalo cookies, so a poisoned dependency = account takeover.
+  # Fail the build on high/critical advisories in production deps.
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm run build:core
+      - run: npm run typecheck
+      - run: npm test
+
+  # Validate the native module (better-sqlite3) loads under Electron's ABI on the
+  # cheapest runner BEFORE spending Windows/macOS minutes. Runs on every push/PR.
+  build-linux:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run compile
+      - run: npx electron-builder --linux --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: minizalo-linux
+          path: |
+            release/*.AppImage
+            release/*.deb
+          if-no-files-found: error
+
+  # Full cross-platform build + GitHub Release, only on version tags.
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build-linux
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run compile
+      - name: Build & publish installer
+        run: npx electron-builder --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
