@@ -1,0 +1,19 @@
+node_modules/
+dist/
+out/
+*.log
+.env
+.env.*
+*.local
+# runtime data (never commit sessions / DB / media)
+data/
+*.db
+*.db-wal
+*.db-shm
+media/
+qr-*.png
+# electron build artifacts
+release/
+.vite/
+# scratch
+.DS_Store
