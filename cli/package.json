@@ -1,0 +1,26 @@
+{
+  "name": "@minizalo/cli",
+  "version": "0.1.0",
+  "description": "MiniZalo CLI — thin REST/WS client over the local core, for AI agents & scripting.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "minizalo": "./dist/bin.js"
+  },
+  "scripts": {
+    "start": "tsx src/bin.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test --import tsx ./test/*.test.ts"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/ws": "^8.5.13",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

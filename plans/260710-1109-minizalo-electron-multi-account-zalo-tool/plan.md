@@ -48,7 +48,7 @@ Electron desktop app (open-source, self-run, không host) quản lý tối đa 6
 | 3 | [Messaging webhook & realtime](./phase-03-messaging-webhook-realtime.md) | Pending |
 | 4 | [Scenarios table & AI API](./phase-04-scenarios-table-ai-api.md) | Completed |
 | 5 | [Electron UI (6-account grid)](./phase-05-electron-ui-6-account-grid.md) | Pending |
-| 6 | [CLI client](./phase-06-cli-client.md) | Pending |
+| 6 | [CLI client](./phase-06-cli-client.md) | Completed |
 | 7 | [Packaging & CI](./phase-07-packaging-ci.md) | Pending |
 
 ## Phase Dependencies
@@ -105,7 +105,7 @@ Không có plan nào khác trong `./plans/` — greenfield. Không cross-plan bl
 | 3 | Fallback creds plaintext → hard-fail + scheme marker + isolate decrypt | Critical | Accept | P1, P2 |
 | 4 | Stored-XSS → apiKey; Electron hardening + render text-only | Critical | Accept | Completed |
 | 5 | Core không supervisor → main respawn + backoff + banner | Critical | Accept | P1, P5 |
-| 6 | Cổng ephemeral stale → nonce/liveness + atomic 0600 + CLI verify | Critical | Accept | P1, P6 |
+| 6 | Cổng ephemeral stale → nonce/liveness + atomic 0600 + CLI verify | Critical | Accept | Completed |
 | 7 | Disk-full cascade → watchdog + ảnh ra filesystem + WAL/batched | Critical | Accept | P3 |
 | 8 | imageMetadataGetter là option lúc new Zalo; base64 cần temp file; group riêng | High | Accept | P2, P3 |
 | 9 | Session restore cần imei/UA khớp → spike zca-js | High | Accept | P2 |

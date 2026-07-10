@@ -1,10 +1,12 @@
 ---
 phase: 6
-title: "CLI client"
-status: pending
-effort: ""
+title: CLI client
+status: completed
+effort: ''
 priority: P2
-dependencies: [3, 4]
+dependencies:
+  - 3
+  - 4
 ---
 
 # Phase 6: CLI client
