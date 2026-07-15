@@ -129,8 +129,7 @@ curl -X POST http://127.0.0.1:$PORT/webhooks \
 
 ### CLI
 
-Install the CLI separately (`npm i -g @minizalo/cli`) or run from this repo. It auto-reads
-`~/.minizalo/config.json` and verifies the core's nonce before sending the key:
+The CLI isn't published to npm yet — install it from source (`npm ci && npm run build --workspace @minizalo/cli && npm i -g ./cli`). It auto-reads `~/.minizalo/config.json` and verifies the core's nonce before sending the key:
 
 ```bash
 minizalo accounts
@@ -170,7 +169,8 @@ knowledge base as agent memory), see **[docs/ai-agent-integration.md](docs/ai-ag
 
 ## Documentation
 
-- [AI agent integration (CLI)](docs/ai-agent-integration.md)
+- [Hướng dẫn sử dụng (Tiếng Việt) — người dùng + AI agent](docs/huong-dan-su-dung.md)
+- [AI agent integration (CLI)](docs/ai-agent-integration.md) · [AGENTS.md](AGENTS.md)
 - [System architecture](docs/system-architecture.md)
 - [Deployment / packaging guide](docs/deployment-guide.md)
 
