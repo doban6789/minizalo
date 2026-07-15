@@ -134,12 +134,18 @@ Install the CLI separately (`npm i -g @minizalo/cli`) or run from this repo. It 
 
 ```bash
 minizalo accounts
-minizalo send <accountId> <threadId> --text "hello" --type user
-minizalo send <accountId> <threadId> --image ./pic.png
-minizalo listen                       # stream events as line-delimited JSON
-minizalo scenario search "giao hang"
-minizalo webhook add https://n8n.example/webhook/zalo
+minizalo send --account <id> --to <threadId> --text "hello" --type user
+minizalo send --account <id> --to <threadId> --image ./pic.png
+minizalo messages --account <id> --thread <threadId> --limit 50   # read history
+minizalo listen                                    # stream events as line-delimited JSON
+minizalo scenario search --q "giao hang"           # read the knowledge base (RAG)
+minizalo scenario add --ten "..." --cach-lam "..." --rut-kinh-nghiem "..."
+minizalo scenario update --id <id> --trang-thai da_xong
+minizalo webhook add --url https://n8n.example/webhook/zalo
 ```
+
+For a full AI-agent playbook (headless mode, drop-in system prompt, the scenarios
+knowledge base as agent memory), see **[docs/ai-agent-integration.md](docs/ai-agent-integration.md)**.
 
 ---
 
@@ -164,6 +170,7 @@ minizalo webhook add https://n8n.example/webhook/zalo
 
 ## Documentation
 
+- [AI agent integration (CLI)](docs/ai-agent-integration.md)
 - [System architecture](docs/system-architecture.md)
 - [Deployment / packaging guide](docs/deployment-guide.md)
 

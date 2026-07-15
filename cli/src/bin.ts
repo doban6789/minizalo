@@ -86,6 +86,26 @@ program
     }
   });
 
+program
+  .command('messages')
+  .description('read stored message history (for AI agent context / RAG)')
+  .option('--account <id>', 'filter by account id')
+  .option('--thread <threadId>', 'filter by thread id')
+  .option('--limit <n>', 'max messages (default core limit)')
+  .option('--before <ts>', 'only messages before this epoch-ms timestamp')
+  .action(async (o) => {
+    try {
+      const qs = new URLSearchParams();
+      if (o.account) qs.set('accountId', o.account);
+      if (o.thread) qs.set('threadId', o.thread);
+      if (o.limit) qs.set('limit', o.limit);
+      if (o.before) qs.set('before', o.before);
+      out(await (await client()).get(`/messages?${qs}`));
+    } catch (e) {
+      fail(e);
+    }
+  });
+
 const scenario = program.command('scenario').description('manage improvement scenarios');
 scenario
   .command('list')
@@ -131,6 +151,44 @@ scenario
           trangThai: o.trangThai,
         }),
       );
+    } catch (e) {
+      fail(e);
+    }
+  });
+
+scenario
+  .command('update')
+  .description('update a scenario (only provided fields change; e.g. mark --trang-thai da_xong)')
+  .requiredOption('--id <id>')
+  .option('--ten <x>')
+  .option('--danh-muc <x>')
+  .option('--thuc-te <x>')
+  .option('--cach-lam <x>')
+  .option('--rut-kinh-nghiem <x>')
+  .option('--trang-thai <x>')
+  .action(async (o) => {
+    try {
+      // Only send keys the user set; omitted fields are preserved server-side.
+      const body: Record<string, unknown> = {};
+      if (o.ten !== undefined) body.ten = o.ten;
+      if (o.danhMuc !== undefined) body.danhMuc = o.danhMuc;
+      if (o.thucTe !== undefined) body.thucTe = o.thucTe;
+      if (o.cachLam !== undefined) body.cachLam = o.cachLam;
+      if (o.rutKinhNghiem !== undefined) body.rutKinhNghiem = o.rutKinhNghiem;
+      if (o.trangThai !== undefined) body.trangThai = o.trangThai;
+      out(await (await client()).put(`/scenarios/${o.id}`, body));
+    } catch (e) {
+      fail(e);
+    }
+  });
+scenario
+  .command('delete')
+  .description('delete a scenario by id')
+  .requiredOption('--id <id>')
+  .action(async (o) => {
+    try {
+      await (await client()).del(`/scenarios/${o.id}`);
+      out({ ok: true, deleted: o.id });
     } catch (e) {
       fail(e);
     }

@@ -54,3 +54,33 @@ test('CLI can create and search a scenario end-to-end', async () => {
   const hits = (await client.get('/scenarios/search?q=integ')) as { results: unknown[] };
   assert.ok(hits.results.length >= 1);
 });
+
+test('scenario partial update preserves omitted fields (e.g. `scenario update --trang-thai`)', async () => {
+  const client = new ApiClient({ baseUrl, apiKey: core.ctx.apiKey, nonce: core.ctx.nonce });
+  const created = (await client.post('/scenarios', {
+    ten: 'Keep me',
+    danhMuc: 'cat-A',
+    cachLam: 'step 1',
+    trangThai: 'moi',
+  })) as { scenario: { id: string } };
+  const id = created.scenario.id;
+
+  // Update only the status — ten/danhMuc/cachLam must survive.
+  const updated = (await client.put(`/scenarios/${id}`, { trangThai: 'da_xong' })) as {
+    scenario: { ten: string; danhMuc: string; cachLam: string; trangThai: string };
+  };
+  assert.equal(updated.scenario.trangThai, 'da_xong');
+  assert.equal(updated.scenario.ten, 'Keep me');
+  assert.equal(updated.scenario.danhMuc, 'cat-A');
+  assert.equal(updated.scenario.cachLam, 'step 1');
+
+  // Delete removes it (204 → null body).
+  await client.del(`/scenarios/${id}`);
+  await assert.rejects(() => client.put(`/scenarios/${id}`, { trangThai: 'moi' }), /not found/);
+});
+
+test('messages query returns a list (CLI `messages` command path)', async () => {
+  const client = new ApiClient({ baseUrl, apiKey: core.ctx.apiKey, nonce: core.ctx.nonce });
+  const res = (await client.get('/messages?limit=10')) as { messages: unknown[] };
+  assert.ok(Array.isArray(res.messages));
+});

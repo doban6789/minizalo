@@ -6,7 +6,9 @@ import type { ScenarioInput } from '../../repositories/scenario-repository.js';
 
 function parseInput(body: Record<string, unknown>): ScenarioInput {
   return {
-    ten: String(body.ten ?? ''),
+    // Omitted `ten` stays undefined so a partial PUT preserves the current value
+    // (repository does `input.ten ?? cur.ten`); coercing to '' would wipe it.
+    ten: body.ten !== undefined ? String(body.ten) : undefined,
     danhMuc: body.danhMuc !== undefined ? String(body.danhMuc) : undefined,
     thucTe: body.thucTe !== undefined ? String(body.thucTe) : undefined,
     cachLam: body.cachLam !== undefined ? String(body.cachLam) : undefined,

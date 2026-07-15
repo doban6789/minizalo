@@ -26,7 +26,8 @@ const toModel = (r: ScenarioRow): ScenarioRecord => ({
 });
 
 export interface ScenarioInput {
-  ten: string;
+  /** Required on create (route enforces); optional on update to allow partial edits. */
+  ten?: string;
   danhMuc?: string;
   thucTe?: string;
   cachLam?: string;
@@ -75,7 +76,7 @@ export class ScenarioRepository {
       )
       .run({
         id,
-        ten: input.ten,
+        ten: input.ten ?? '',
         danhMuc: input.danhMuc ?? '',
         thucTe: input.thucTe ?? '',
         cachLam: input.cachLam ?? '',
