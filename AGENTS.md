@@ -25,11 +25,13 @@ minizalo scenario update --id <id> --trang-thai da_xong       # cập nhật tr�
 
 Mọi lệnh in một dòng JSON. Trạng thái tình huống: `moi`, `dang_xu_ly`, `da_xong`, `bo`.
 
-## Cài CLI (chưa có trên npm — chạy từ nguồn)
+## Cài CLI (cần Node.js)
 
 ```bash
-git clone https://github.com/vuongnguyenbinh/minizalo && cd minizalo && npm ci
-npm run build --workspace minizalo-cli && npm i -g ./cli
+# từ tarball Release (không cần tài khoản npm):
+npm i -g https://github.com/vuongnguyenbinh/minizalo/releases/latest/download/minizalo-cli.tgz
+# hoặc từ nguồn:
+git clone https://github.com/vuongnguyenbinh/minizalo && cd minizalo && npm ci && npm run build --workspace minizalo-cli && npm i -g ./cli
 ```
 
 ## Tài liệu

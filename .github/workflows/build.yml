@@ -77,3 +77,31 @@ jobs:
         run: npx electron-builder --publish always
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Attach the CLI + core npm tarballs to the same Release so users can install
+  # without an npm registry: `npm i -g <tarball-url>`. Runs once (platform-agnostic).
+  cli-tarball:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: release
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build --workspace minizalo-core
+      - run: npm run build --workspace minizalo-cli
+      - run: npm pack --workspace minizalo-cli --workspace minizalo-core
+      # Also publish stable, unversioned names so a `releases/latest/download/...`
+      # URL always points at the newest CLI/core.
+      - run: |
+          cp minizalo-cli-*.tgz minizalo-cli.tgz
+          cp minizalo-core-*.tgz minizalo-core.tgz
+      - name: Attach tarballs to the release
+        run: gh release upload "${GITHUB_REF_NAME}" minizalo-cli-*.tgz minizalo-core-*.tgz minizalo-cli.tgz minizalo-core.tgz --clobber
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

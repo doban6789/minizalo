@@ -110,13 +110,15 @@ App MiniZalo chạy            ~/.minizalo/config.json (0600)
 1. **Core phải đang chạy**: hoặc mở app desktop, hoặc chạy bản headless không GUI
    (trên server): `npx --package minizalo-core minizalo-core`. Cả hai đều ghi cùng
    file `~/.minizalo/config.json`.
-2. **Cài CLI** — hiện *chưa publish lên npm*, nên chạy từ mã nguồn:
+2. **Cài CLI** (cần Node.js). Cài thẳng từ tarball đính kèm Release — **không cần
+   tài khoản npm**:
    ```bash
-   git clone https://github.com/vuongnguyenbinh/minizalo
-   cd minizalo && npm ci
-   npm run build --workspace minizalo-cli   # tạo cli/dist/bin.js
-   npm i -g ./cli                            # có lệnh `minizalo` toàn cục
-   # (hoặc chạy trực tiếp: node cli/dist/bin.js accounts)
+   npm i -g https://github.com/vuongnguyenbinh/minizalo/releases/latest/download/minizalo-cli.tgz
+   ```
+   Hoặc build từ mã nguồn:
+   ```bash
+   git clone https://github.com/vuongnguyenbinh/minizalo && cd minizalo && npm ci
+   npm run build --workspace minizalo-cli && npm i -g ./cli
    ```
    CLI tự đọc `~/.minizalo/config.json`, xác minh `nonce` rồi mới gửi key. Không cần
    cấu hình tay. Có thể ghi đè bằng `--url` / `--key` hoặc biến `MINIZALO_URL` / `MINIZALO_KEY`.
