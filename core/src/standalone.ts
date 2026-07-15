@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * Headless entry point. Runs the core without Electron (VPS / dev / CI).
  * Credentials persist only if MINIZALO_PASSPHRASE is set (Red Team #3).

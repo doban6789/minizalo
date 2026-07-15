@@ -8,11 +8,11 @@ thin clients that talk to the core over a loopback HTTP/WebSocket API.
 
 | Layer | Package / path | Responsibility |
 |-------|----------------|----------------|
-| Core | `core/` (`@minizalo/core`) | REST/WS server, SQLite, zca-js account manager, webhook dispatcher |
+| Core | `core/` (`minizalo-core`) | REST/WS server, SQLite, zca-js account manager, webhook dispatcher |
 | Electron main | `src/main/` | Hosts the core in-process, provides `safeStorage` crypto, writes CLI config, owns the BrowserWindow |
 | Preload | `src/preload/` | `contextBridge` exposing only `getConfig()` (baseUrl + apiKey) to the renderer |
 | Renderer | `src/renderer/` | React UI: accounts grid, chat, scenarios, webhooks, settings |
-| CLI | `cli/` (`@minizalo/cli`) | Shell/AI-agent client; reads `~/.minizalo/config.json` |
+| CLI | `cli/` (`minizalo-cli`) | Shell/AI-agent client; reads `~/.minizalo/config.json` |
 
 The core is deliberately UI-agnostic. It can also run standalone (`core/src/standalone.ts`,
 bin `minizalo-core`) for headless/server use — the crypto provider is **injected** so the

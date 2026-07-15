@@ -108,13 +108,13 @@ App MiniZalo chạy            ~/.minizalo/config.json (0600)
 ## Điều kiện & cài CLI
 
 1. **Core phải đang chạy**: hoặc mở app desktop, hoặc chạy bản headless không GUI
-   (trên server): `npx --package @minizalo/core minizalo-core`. Cả hai đều ghi cùng
+   (trên server): `npx --package minizalo-core minizalo-core`. Cả hai đều ghi cùng
    file `~/.minizalo/config.json`.
 2. **Cài CLI** — hiện *chưa publish lên npm*, nên chạy từ mã nguồn:
    ```bash
    git clone https://github.com/vuongnguyenbinh/minizalo
    cd minizalo && npm ci
-   npm run build --workspace @minizalo/cli   # tạo cli/dist/bin.js
+   npm run build --workspace minizalo-cli   # tạo cli/dist/bin.js
    npm i -g ./cli                            # có lệnh `minizalo` toàn cục
    # (hoặc chạy trực tiếp: node cli/dist/bin.js accounts)
    ```

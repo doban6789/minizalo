@@ -1,5 +1,5 @@
 import { safeStorage } from 'electron';
-import type { CryptoProvider } from '@minizalo/core';
+import type { CryptoProvider } from 'minizalo-core';
 
 const SCHEME = 'mzss1'; // minizalo-safestorage v1
 

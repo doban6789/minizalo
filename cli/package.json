@@ -1,15 +1,21 @@
 {
-  "name": "@minizalo/cli",
-  "version": "0.1.0",
+  "name": "minizalo-cli",
+  "version": "0.2.0",
   "description": "MiniZalo CLI — thin REST/WS client over the local core, for AI agents & scripting.",
   "type": "module",
   "license": "MIT",
+  "homepage": "https://github.com/vuongnguyenbinh/minizalo#readme",
+  "repository": { "type": "git", "url": "git+https://github.com/vuongnguyenbinh/minizalo.git", "directory": "cli" },
+  "bugs": "https://github.com/vuongnguyenbinh/minizalo/issues",
+  "keywords": ["zalo", "zca-js", "cli", "ai-agent", "n8n", "automation"],
+  "files": ["dist"],
   "bin": {
     "minizalo": "./dist/bin.js"
   },
   "scripts": {
     "start": "tsx src/bin.ts",
     "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "node --test --import tsx ./test/*.test.ts"
   },

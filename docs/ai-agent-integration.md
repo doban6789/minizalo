@@ -28,13 +28,13 @@ MiniZalo app running                ~/.minizalo/config.json   (0600)
      `~/.minizalo/config.json`.
    - **Headless (no GUI, e.g. a server for the agent)** — run the core binary:
      ```bash
-     npx --package @minizalo/core minizalo-core     # or: minizalo-core (if installed)
+     npx --package minizalo-core minizalo-core     # or: minizalo-core (if installed)
      ```
      It binds loopback and writes the same config file.
 2. **Install the CLI** (for shell-based agents). Not on npm yet — build from source:
    ```bash
    git clone https://github.com/vuongnguyenbinh/minizalo && cd minizalo && npm ci
-   npm run build --workspace @minizalo/cli && npm i -g ./cli
+   npm run build --workspace minizalo-cli && npm i -g ./cli
    ```
    The CLI auto-reads `~/.minizalo/config.json`, verifies the core's `nonce`, then
    sends the API key. No manual credentials needed. Override with `--url` / `--key`

@@ -2,7 +2,7 @@ import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
 
-// Native/node deps (better-sqlite3, zca-js, fastify, @minizalo/core) must stay
+// Native/node deps (better-sqlite3, zca-js, fastify, minizalo-core) must stay
 // external — never bundled into the Electron main chunk.
 export default defineConfig({
   main: {

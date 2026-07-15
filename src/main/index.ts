@@ -2,7 +2,7 @@ import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import { join } from 'node:path';
 import { mkdirSync, writeFileSync, renameSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { createCore, type RunningCore } from '@minizalo/core';
+import { createCore, type RunningCore } from 'minizalo-core';
 import { SafeStorageCryptoProvider } from './safe-storage-crypto.js';
 
 /**

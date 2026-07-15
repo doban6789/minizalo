@@ -10,7 +10,7 @@ MiniZalo mở một cổng cục bộ (REST + WebSocket + CLI) để AI agent g�
   đang chạy — nếu không sẽ bỏ qua xác thực/kiểm tra dữ liệu và có thể hỏng DB.
 - App đang chạy ghi `~/.minizalo/config.json` (0600): `{ baseUrl, port, apiKey, nonce }`.
 - Gọi qua CLI `minizalo` (tự đọc config) hoặc REST với header `X-API-Key`.
-- Core phải chạy: mở app desktop, **hoặc** headless `npx --package @minizalo/core minizalo-core`.
+- Core phải chạy: mở app desktop, **hoặc** headless `npx --package minizalo-core minizalo-core`.
 
 ## Lệnh CLI hay dùng
 
@@ -29,7 +29,7 @@ Mọi lệnh in một dòng JSON. Trạng thái tình huống: `moi`, `dang_xu_l
 
 ```bash
 git clone https://github.com/vuongnguyenbinh/minizalo && cd minizalo && npm ci
-npm run build --workspace @minizalo/cli && npm i -g ./cli
+npm run build --workspace minizalo-cli && npm i -g ./cli
 ```
 
 ## Tài liệu

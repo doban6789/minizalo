@@ -129,7 +129,7 @@ curl -X POST http://127.0.0.1:$PORT/webhooks \
 
 ### CLI
 
-The CLI isn't published to npm yet — install it from source (`npm ci && npm run build --workspace @minizalo/cli && npm i -g ./cli`). It auto-reads `~/.minizalo/config.json` and verifies the core's nonce before sending the key:
+The CLI isn't published to npm yet — install it from source (`npm ci && npm run build --workspace minizalo-cli && npm i -g ./cli`). It auto-reads `~/.minizalo/config.json` and verifies the core's nonce before sending the key:
 
 ```bash
 minizalo accounts

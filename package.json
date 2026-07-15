@@ -1,6 +1,6 @@
 {
   "name": "minizalo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MiniZalo — open-source Electron tool to manage up to 6 personal Zalo accounts with a local REST/WS/webhook/CLI gateway for AI agents & n8n. Built on zca-js.",
   "private": true,
   "type": "module",
@@ -12,11 +12,11 @@
     "cli"
   ],
   "scripts": {
-    "build:core": "npm run build --workspace @minizalo/core",
+    "build:core": "npm run build --workspace minizalo-core",
     "typecheck": "npm run typecheck --workspaces --if-present && tsc -p tsconfig.electron.json --noEmit",
-    "core:dev": "npm run dev --workspace @minizalo/core",
-    "core:start": "npm run start --workspace @minizalo/core",
-    "cli": "npm run --workspace @minizalo/cli start --",
+    "core:dev": "npm run dev --workspace minizalo-core",
+    "core:start": "npm run start --workspace minizalo-core",
+    "cli": "npm run --workspace minizalo-cli start --",
     "test": "npm run test --workspaces --if-present",
     "predev": "npm run build:core",
     "dev": "electron-vite dev",
@@ -29,7 +29,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "@minizalo/core": "*"
+    "minizalo-core": "*"
   },
   "devDependencies": {
     "@types/react": "^19.0.7",
