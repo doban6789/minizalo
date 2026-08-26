@@ -7,6 +7,7 @@ import { registerAccountRoutes } from './routes/accounts.js';
 import { registerMessageRoutes } from './routes/messages.js';
 import { registerWebhookRoutes } from './routes/webhooks.js';
 import { registerScenarioRoutes } from './routes/scenarios.js';
+import { registerContactRoutes } from './routes/contacts.js';
 import { registerStreamRoute } from './ws.js';
 
 const PUBLIC_PATHS = new Set(['/health']);
@@ -69,6 +70,7 @@ export function buildServer(ctx: CoreContext): FastifyInstance {
     registerMessageRoutes(app, ctx);
     registerWebhookRoutes(app, ctx);
     registerScenarioRoutes(app, ctx);
+    registerContactRoutes(app, ctx);
   });
 
   return app;
