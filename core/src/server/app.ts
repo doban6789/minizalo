@@ -34,7 +34,7 @@ function originAllowed(req: FastifyRequest): boolean {
 export function buildServer(ctx: CoreContext): FastifyInstance {
   const app = Fastify({ logger: false });
 
-  app.register(websocket);
+  app.register(websocket, { options: { maxPayload: 1024 * 64 } }); // 64KB max
 
   // Routes + the auth hook must be registered AFTER the websocket plugin loads,
   // otherwise its onRoute hook never sees `{ websocket: true }` and /stream is

@@ -1,4 +1,10 @@
-/** SQLite connection helper (better-sqlite3). WAL + busy_timeout per Red Team #7. */
+/**
+ * SQLite connection helper (better-sqlite3). WAL + busy_timeout per Red Team #7.
+ *
+ * NOTE: better-sqlite3 is synchronous (by design).
+ * At current scale this is fine. If query volume increases significantly,
+ * consider offloading to a worker thread or switching to better-sqlite3-worker-threads.
+ */
 import Database from 'better-sqlite3';
 import { dirname } from 'node:path';
 import { mkdirSync } from 'node:fs';

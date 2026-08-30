@@ -51,6 +51,12 @@ export class NodeCryptoProvider implements CryptoProvider {
 
   constructor(passphrase: string | undefined) {
     if (passphrase && passphrase.length >= 8) {
+      /**
+       * KNOWN LIMITATION: Uses fixed pre-salt 'minizalo-static-salt'.
+       * Impact: LOW — requires local access + passphrase knowledge.
+       * Future: Use per-installation random salt stored alongside DB,
+       * with backward-compat fallback to fixed salt.
+       */
       // Deterministic salt derived from a fixed app tag keeps the key stable
       // across restarts for the same passphrase (so persisted blobs decrypt).
       const salt = scryptSync(passphrase, 'minizalo-static-salt', 16);
