@@ -154,8 +154,8 @@ export class WebhookDispatcher {
       return;
     }
     // Backoff: 5s, 15s, 45s
-    const delays = [5000, 15000, 45000];
-    const delay = delays[attempts];
+    const delays = [5000, 15000, 45000] as const;
+    const delay = delays[attempts] ?? 45000;
     this.queue.push({
       event,
       wh,
